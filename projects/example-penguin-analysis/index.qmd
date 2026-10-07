@@ -31,6 +31,7 @@ What did you do, and why that way? Name the tools and the choices you made.
 import polars as pl
 from lets_plot import *
 LetsPlot.setup_html()
+pl.Config.set_tbl_hide_dataframe_shape(True)  # hides the "shape: (3, 2)" line above tables
 
 df = pl.DataFrame({
     "species": ["Adelie", "Chinstrap", "Gentoo"] * 3,
