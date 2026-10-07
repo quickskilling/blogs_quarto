@@ -1,0 +1,26 @@
+[project]
+name = "quarto-portfolio"
+version = "0.1.0"
+description = "Data science portfolio built with Quarto"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "lets-plot>=4.8.2",
+    "polars[async,database,excel,fsspec,graph,numpy,plot,pyarrow,style,timezone]>=1.38.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.11,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.2.0",
+    "marimo>=0.19.11",
+    "nbclient>=0.10.4",
+    "nbformat>=5.10.4",
+    "pyyaml>=6.0.3",
+]
+
+[tool.uv]
+package = false

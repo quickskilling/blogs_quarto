@@ -1,0 +1,12 @@
+---
+title: "Example: How I approach a new dataset"
+description: "A sample post. Replace it with your own writing."
+author: "Your Name"
+date: "2026-01-01"
+categories: [workflow]
+draft: true
+---
+
+This is a placeholder (`draft: true` keeps it off the published site).
+Write about something you actually learned, a decision you made, or a mistake you fixed.
+Use the `new-post` skill to start a real one.

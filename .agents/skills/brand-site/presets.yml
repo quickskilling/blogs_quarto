@@ -1,0 +1,81 @@
+# Vetted brand presets. Every preset passes WCAG AA (check with `scripts/brand.py check`).
+# `brand` is written to _brand.yml as-is by `scripts/brand.py apply <id>`.
+presets:
+  - id: classic-blue
+    name: Classic Blue
+    mood: Clean, trustworthy, safe for any audience
+    brand:
+      color:
+        palette: {ink: "#1f2933", accent: "#2563eb", paper: "#ffffff"}
+        foreground: ink
+        background: paper
+        primary: accent
+      typography:
+        fonts:
+          - {family: Inter, source: google}
+        base: Inter
+        headings: {family: Inter, weight: 700}
+
+  - id: forest
+    name: Forest
+    mood: Calm and grounded; good for environmental, health, or science work
+    brand:
+      color:
+        palette: {ink: "#1b2a22", accent: "#166534", paper: "#fbfdfb"}
+        foreground: ink
+        background: paper
+        primary: accent
+      typography:
+        fonts:
+          - {family: Source Sans 3, source: google}
+          - {family: Merriweather, source: google}
+        base: Source Sans 3
+        headings: {family: Merriweather, weight: 700}
+
+  - id: warm-editorial
+    name: Warm Editorial
+    mood: Thoughtful and readable; suits writing-heavy portfolios
+    brand:
+      color:
+        palette: {ink: "#2b2118", accent: "#b45309", paper: "#fffaf3"}
+        foreground: ink
+        background: paper
+        primary: accent
+      typography:
+        fonts:
+          - {family: Inter, source: google}
+          - {family: Lora, source: google}
+        base: Inter
+        headings: {family: Lora, weight: 700}
+
+  - id: midnight
+    name: Midnight (dark)
+    mood: Technical and modern; dark background, bright accent
+    brand:
+      color:
+        palette: {ink: "#e2e8f0", accent: "#38bdf8", night: "#0f172a"}
+        foreground: ink
+        background: night
+        primary: accent
+      typography:
+        fonts:
+          - {family: Space Grotesk, source: google}
+          - {family: JetBrains Mono, source: google}
+        base: Space Grotesk
+        headings: {family: Space Grotesk, weight: 700}
+        monospace: JetBrains Mono
+
+  - id: violet-pop
+    name: Violet Pop
+    mood: Confident and creative; stands out without shouting
+    brand:
+      color:
+        palette: {ink: "#2d1b3d", accent: "#7c3aed", paper: "#ffffff"}
+        foreground: ink
+        background: paper
+        primary: accent
+      typography:
+        fonts:
+          - {family: Poppins, source: google}
+        base: Poppins
+        headings: {family: Poppins, weight: 600}

@@ -1,0 +1,28 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Your Name"                      # TODO: your name
+  description: "Data science portfolio"   # TODO: one-line description
+  site-url: https://YOUR-USERNAME.github.io/YOUR-REPO   # TODO: needed for RSS and sharing
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - projects/index.qmd
+      - skills.qmd
+      - posts/index.qmd
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/YOUR-USERNAME   # TODO
+      - icon: linkedin
+        href: https://www.linkedin.com/in/YOUR-PROFILE   # TODO
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css

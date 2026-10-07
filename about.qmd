@@ -1,0 +1,21 @@
+---
+title: "About"
+image: profile.jpg
+about:
+  template: jolla
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/YOUR-USERNAME      # TODO
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/YOUR-PROFILE   # TODO
+---
+
+<!-- TODO: write this yourself. A good About page answers four questions:
+1. What do you do and what are you studying?
+2. What kind of problems do you like?
+3. What have you built that you are proud of?
+4. How can someone reach you? -->
+
+Write about yourself here.

@@ -1,46 +1,67 @@
-# Getting a Python Quarto Blog Running
+# Quarto Portfolio Template (AI-assisted)
 
-## Install uv
+A template for building a data science portfolio with [Quarto](https://quarto.org), Python, and an AI coding assistant. You end with a live website that shows your projects, your skills, and how you think.
 
-**On Mac OS:**
+## Quick start
+
+1. **Use this template.** On GitHub click *Use this template*, then *Create a new repository* (name it something like `portfolio`). Clone it.
+2. **Install tools** (once):
+   - [uv](https://docs.astral.sh/uv/): `curl -LsSf https://astral.sh/uv/install.sh | sh` (Windows: `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`)
+   - [Quarto](https://quarto.org/docs/download/) 1.9 or newer. Check with `quarto check`.
+   - An AI coding assistant. This course uses Codex.
+3. **Install dependencies:** `uv sync`
+4. **Preview the site:** `uv run quarto preview`
+5. **Open your assistant in this folder** and say: *"Use the setup-portfolio skill."*
+6. **Publish:** push to `main`. In your repo go to *Settings, Pages, Source* and choose **GitHub Actions**. Your site appears at `https://<username>.github.io/<repo>`.
+
+## What you build
+
+| Page | Purpose |
+|---|---|
+| Home | Short pitch and your 3 featured projects |
+| Projects | One page per project: problem, approach, result |
+| Skills | Filter projects by skill. Every skill is backed by evidence |
+| Writing | Optional posts about what you learned |
+| About | Who you are and how to reach you |
+
+## Working with AI
+
+Skills (playbooks) live in `.agents/skills/`. Ask your assistant to use them by name:
+
+| Skill | Use it to |
+|---|---|
+| `setup-portfolio` | Replace the template placeholders with your info |
+| `new-project` | Turn work you did into a project page |
+| `new-post` | Start a blog post |
+| `polish-writing` | Get editing feedback in your own voice |
+| `brand-site` | Pick colors and fonts from vetted presets, with a contrast check |
+| `portfolio-review` | Get a hiring-manager critique |
+| `check-site` | Verify the site is ready to publish |
+
+Read [guide/ai-workflow.md](guide/ai-workflow.md) first. The rule is simple: the AI helps you write and debug, but every claim on the site must be true and something you can explain.
+
+`AGENTS.md` holds the rules the assistant follows (never invent facts, keep your voice, teach as it goes).
+
+## Daily commands
+
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
+uv run quarto preview                 # live preview
+uv run quarto render                  # build to docs/
+uv run python scripts/check_site.py   # leftover placeholders, thin projects
 ```
 
-**On Windows (PowerShell):**
-```powershell
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
+Code output is saved in `_freeze/`. Commit it so the publish workflow does not need to execute your code. If you change a code cell, re-render locally first.
 
-## Install Quarto
+## Customizing
 
-1. [Download Quarto](https://quarto.org/docs/download/) for your OS specific CLI using a version `>=1.9`.
-2. Install the CLI
-3. Check that your CLI installation worked with `quarto check`
+- Colors and fonts: `_brand.yml`
+- Site title, nav, links: `_quarto.yml`
+- Extra CSS: `styles.css`
 
-## Use uv and quarto to build structure
+## Optional: interactive pages with marimo
 
-1. `uv init --lib .`
-2. `uv venv --python 3.13` to make a different version installed.
-3. `source .venv/bin/activate` to activate the shell
-4. `uv add "polars[numpy, pyarrow, excel, database, fsspec, async, graph, plot, style, timezone]" lets-plot`
-5. `uv add --dev ipykernel pyyaml nbformat nbclient "marimo>=0.19.11"`
-6. Add the following text to your `pyproject.toml` that was created and save the file.
-  ```
-  [tool.uv]
-  package = false
-  ```
-6. `quarto create project blog .` and the terminal will ask you for a title of your blog. [Read more about Quarto blogs](https://quarto.org/docs/websites/website-blog.html)
-7. `quarto add marimo-team/quarto-marimo`
-8. Edit your `_quarto.yml` to have the following text (see the [_quarto.yml guidance for more](https://quarto.org/docs/projects/quarto-projects.html#project-metadata)). The primary change is `output-dir: docs`.
-  ```
-  project:
-    type: website
-    output-dir: docs
-  ```
-9. This repo has a `new_post.sh` that can be run to create a new post with marimo chunks.
-  A. Run  `chmod +x new_post.sh` so that the file will run (only needs to be run once).
-  B. Now `./new_post.sh test "Test Marimo Post" "J. Hathaway"` will create a new folder in the `posts` folder with the folder name `test` that has an `index.qmd` file created with the title of `test marimo` and the author `J. Hathaway`.
-10. Now run `QUARTO_MARIMO_VERSION=0.14.6 quarto preview` to build your site in the `docs` folder and serve it to your default web browser (Note: at some point we should be able to remove `QUARTO_MARIMO_VERSION=0.14.6`).
-11. You can explore your website and make any other needed changes. 
-12. Now push your changes to Github and then go to `settings > pages` to fix how our site is rendered using [Github pages](https://quarto.org/docs/publishing/github-pages.html). We want to use the `docs` folder method.
+The [marimo Quarto extension](https://github.com/marimo-team/quarto-marimo) is installed in `_extensions/`. Use `{python.marimo}` cells in a project page if you want reactive widgets. Not needed for a good portfolio.
+
+## History
+
+The previous version of this repo (a plain Quarto blog with a marimo post script) is on the `historical` branch.

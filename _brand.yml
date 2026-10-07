@@ -1,0 +1,15 @@
+# Change these to make the site yours. Colors and fonts apply everywhere.
+color:
+  palette:
+    ink: "#1f2933"
+    accent: "#2563eb"
+  foreground: ink
+  primary: accent
+typography:
+  fonts:
+    - family: Inter
+      source: google
+  base: Inter
+  headings:
+    family: Inter
+    weight: 700

@@ -1,0 +1,4 @@
+# Applies to every project. Computed output is frozen so CI only needs Quarto.
+freeze: true
+title-block-banner: true
+toc: true

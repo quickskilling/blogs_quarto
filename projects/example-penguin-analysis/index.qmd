@@ -1,0 +1,59 @@
+---
+title: "Example: Penguin Body Mass Analysis"
+description: "SAMPLE PROJECT. Replace with your own work. Shows the expected structure."
+date: "2026-01-01"
+categories: [Python, Polars, Data Visualization]
+featured: true
+example: true
+repo: https://github.com/YOUR-USERNAME/YOUR-PROJECT
+tools: [polars, lets-plot]
+jupyter: python3
+execute:
+  echo: true
+---
+
+::: {.callout-note}
+This is a sample project page. Delete the `example: true` line when you replace it with your own work.
+:::
+
+## The problem
+
+One or two sentences. Who needed an answer, and what was the question?
+*Example: Which penguin species is heaviest, and does flipper length predict body mass?*
+
+## My approach
+
+What did you do, and why that way? Name the tools and the choices you made.
+
+## The work
+
+```{python}
+import polars as pl
+from lets_plot import *
+LetsPlot.setup_html()
+
+df = pl.DataFrame({
+    "species": ["Adelie", "Chinstrap", "Gentoo"] * 3,
+    "body_mass_g": [3700, 3730, 5076, 3680, 3790, 5000, 3720, 3750, 5100],
+})
+summary = df.group_by("species").agg(pl.col("body_mass_g").mean().round(0)).sort("species")
+summary
+```
+
+```{python}
+(ggplot(summary, aes("species", "body_mass_g", fill="species"))
+ + geom_bar(stat="identity")
+ + labs(title="Mean body mass by species (sample data)"))
+```
+
+## The result
+
+What did you find or build? Use a number. *Example: Gentoo penguins average about 5,000 g, roughly 35% heavier than the other species.*
+
+## What I learned
+
+One honest paragraph about what was hard and what you would do differently.
+
+## Links
+
+- Code: see `repo` in the page metadata

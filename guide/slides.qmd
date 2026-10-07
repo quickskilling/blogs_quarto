@@ -1,0 +1,203 @@
+---
+title: "Build Your Portfolio with Quarto and AI"
+subtitle: "A guide to using this site template"
+format:
+  revealjs:
+    theme: [default, brand]
+    slide-number: true
+    code-line-numbers: false
+    footer: "Quarto portfolio template"
+execute:
+  eval: false
+---
+
+## What you will build {.smaller}
+
+A live website that shows your projects, your skills, and how you think.
+
+| Page | Purpose |
+|---|---|
+| Home | Short pitch and 3 featured projects |
+| Projects | One page per project: problem, approach, result |
+| Skills | Filter projects by skill, each backed by evidence |
+| Writing | Optional posts about what you learned |
+| About | Who you are and how to reach you |
+
+::: {.notes}
+Every page exists to answer one question for an employer: what can this person actually do?
+:::
+
+## The one rule
+
+::: {.callout-important}
+## Everything on the site must be true
+
+The AI helps you write and debug. Every claim must be something you did and can explain in an interview.
+:::
+
+## Setup: tools {.smaller}
+
+Install once:
+
+1. **[uv](https://docs.astral.sh/uv/)** for Python and dependencies
+2. **[Quarto](https://quarto.org/docs/download/)** 1.9 or newer (check with `quarto check`)
+3. **An AI coding assistant** (this course uses Codex)
+
+## Setup: your copy {.smaller}
+
+1. On GitHub click **Use this template**, then **Create a new repository**
+2. Clone it and open the folder
+3. Install dependencies and preview:
+
+```bash
+uv sync
+uv run quarto preview
+```
+
+## Where things live {.smaller}
+
+| Path | Purpose |
+|---|---|
+| `index.qmd` | Home page |
+| `about.qmd` | About page (you write this) |
+| `projects/<slug>/index.qmd` | One folder per project |
+| `posts/<slug>/index.qmd` | Optional writing |
+| `skills.qmd` | Skills, built from project `categories` |
+| `_quarto.yml` | Site title, navbar, links |
+| `_brand.yml` | Colors and fonts |
+| `.agents/skills/` | Playbooks for your AI assistant |
+
+## Step 1: make it yours
+
+Open your assistant in the project folder and say:
+
+> Use the setup-portfolio skill.
+
+It interviews you, then replaces the `TODO` placeholders in `_quarto.yml`, `index.qmd` and `about.qmd`.
+
+It will not invent anything about you. If you do not know an answer, it leaves a `TODO`.
+
+## Step 2: add a project {.smaller}
+
+> Use the new-project skill. My repo is ...
+
+Each project page has this frontmatter:
+
+```yaml
+title: "Plain-language title"
+description: "One sentence: what it is and the result."
+date: "2026-01-15"
+categories: [Python, Polars, Data Visualization]
+featured: true
+```
+
+Sections, in order: **The problem**, **My approach**, **The work**, **The result**, **What I learned**, **Links**.
+
+## Categories are your skills
+
+- The Skills page is generated from project `categories`
+- No project, no skill
+- Reuse names exactly: `Python` and `python` become two skills
+- At most 3 projects can be `featured: true`
+
+## A strong result has a number
+
+::: {.columns}
+::: {.column width="50%"}
+**Weak**
+
+"I analyzed penguin data and made some charts."
+:::
+::: {.column width="50%"}
+**Strong** (illustrative example)
+
+"Flipper length predicted body mass with R² of 0.76, so one measurement is enough for a rough weight estimate."
+:::
+:::
+
+You must have measured it. Never accept a number you did not produce.
+
+## Step 3: writing (optional)
+
+> Use the new-post skill.
+
+Projects show **what** you built. Posts show **how you think**: what you learned, a decision you made, a short tutorial.
+
+Posts start as `draft: true` until you are ready.
+
+## Skills your assistant knows {.smaller}
+
+| Skill | Use it to |
+|---|---|
+| `setup-portfolio` | Replace the template placeholders |
+| `new-project` | Turn work you did into a project page |
+| `new-post` | Start a blog post |
+| `polish-writing` | Get feedback in your own voice |
+| `brand-site` | Pick colors and fonts from vetted presets |
+| `portfolio-review` | Get a hiring-manager critique |
+| `check-site` | Verify the site is ready to publish |
+
+Call them by name. They are plain markdown in `.agents/skills/`.
+
+## The AI loop {.smaller}
+
+1. **Give context**: goal, audience, files
+2. **Ask for a plan** before anything bigger than a typo
+3. **Review every change** with `git diff`
+4. **Run the checks**
+5. **Commit small**: one idea per commit
+
+If you cannot explain a line, ask the assistant to explain it, or remove it.
+
+## What not to do
+
+- Do not let it **invent** facts or numbers
+- Do not paste text you have **not read**
+- Do not claim skills with **no project** behind them
+- Do not paste **secrets** or private data into a prompt
+
+## Daily commands
+
+```bash
+uv run quarto preview                 # live preview
+uv run quarto render                  # build to docs/
+uv run python scripts/check_site.py   # leftover placeholders, thin projects
+```
+
+Computed output is saved in `_freeze/`. Commit it so publishing does not need to run your code. After changing a code cell, re-render locally first.
+
+## Publish {.smaller}
+
+1. Set `site-url` in `_quarto.yml` to `https://<username>.github.io/<repo>`
+2. In your repo: **Settings, Pages, Source: GitHub Actions**
+3. Push to `main`
+
+The workflow in `.github/workflows/publish.yml` builds the site and deploys it. Your site appears at the URL above.
+
+## Before you share the link
+
+Pick any project and answer out loud, without notes:
+
+1. What was the question and why did it matter?
+2. What did you do, and what did you not do?
+3. Why that method instead of another?
+4. What would you do differently?
+
+If you cannot, go back and learn the part you skipped.
+
+## Disclose your AI use
+
+Add one honest sentence to your About page or footer:
+
+> "I use AI assistants for editing and debugging; the analysis and conclusions are my own."
+
+Follow your course and employer policies.
+
+## Summary
+
+1. Install tools, use the template, `uv sync`
+2. Run **setup-portfolio**
+3. Add projects with **new-project**, each with a real result
+4. Run **portfolio-review** and **check-site**
+5. Push to `main`
+6. Be ready to defend every page
